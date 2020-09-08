@@ -1,0 +1,50 @@
+1. jdk 설치
+mkdir /usr/lib/jvm > 경로 만들기 경로는 바뀔 수 있다
+tar -zxvf jdk-8u191-linux-x64.tar.gz > 'jdk-8u191-linux-x64.tar.gz' 파일 압축 해제
+
+2. path 설정
+etc/ 경로에 environment 파일의 내용 수정 및 추가
+etc/ 경로에 profile 파일의 내용 수정 및 추가
+profile 맨아래줄에 'source /etc/environment' 추가
+<----------------------------------------------- environment 수정 내용 시작 ------------------------------------------------>
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/jdk1.8.0_261/bin"
+
+JAVA_HOME=/usr/lib/jvm/jdk1.8.0_261
+CLASSPATH=JAVA_HOME=/usr/lib/jvm/jdk1.8.0_261/lib
+<----------------------------------------------- environment 수정 내용 끝 --------------------------------------------------->
+<----------------------------------------------- profile  수정 내용 시작 ------------------------------------------------------->
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+
+if [ "$PS1" ]; then
+  if [ "$BASH" ] && [ "$BASH" != "/bin/sh" ]; then
+    # The file bash.bashrc already sets the default PS1.
+    # PS1='\h:\w\$ '
+    if [ -f /etc/bash.bashrc ]; then
+      . /etc/bash.bashrc
+    fi
+  else
+    if [ "`id -u`" -eq 0 ]; then
+      PS1='# '
+    else
+      PS1='$ '
+    fi
+  fi
+fi
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh; do
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi
+
+source /etc/environment
+<---------------------------------------------- profile 수정 내용 끝 ----------------------------------------------------------->
+
+3. 명령어 연결
+sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk1.8.0_261/bin/java" 1
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk1.8.0_261/bin/javac" 1
+sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/jdk1.8.0_261/bin/javaws" 1

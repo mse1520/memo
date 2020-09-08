@@ -1,0 +1,22 @@
+1. 기본 명령어
+mysql - u root -p
+show databases
+create database 데이터베이스이름
+
+2. 복구 명령어
+mysql -u root -p synergy_cloud < synergy_2020-07-31.sql
+
+3. 계정생성 및 권한주기
+CREATE USER '아이디'@'%' IDENTIFIED BY '비밀번호';
+GRANT ALL PRIVILEGES ON 데이터베이스.* TO '아이디'@'%';
+show grants for '아이디'@'localhost(또는%)';
+
+4. 유저정보 확인하기
+use mysql;
+select * from user;
+
+5. cmd 파일 이동 명령어
+move 이동파일 이동경로
+move synergy_2020-07-31.sql "C:\Program Files\MariaDB 10.4\bin" >
+'synergy_2020-07-31.sql' 파일을 'C:\Program Files\MariaDB 10.4\bin' 이동경로에 옮긴다
+

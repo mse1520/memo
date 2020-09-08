@@ -1,0 +1,37 @@
+1. 접속 명령어
+ssh -p 22 root@117.16.15.192 > root 계정으로 117.16.15.192:22 에 접속합니다
+touch 파일명 > 파일생성
+
+2. mariaDB 설정 on ubuntu
+/etc/mysql/ 경로에서 my.cnf 파일 내용 확인 후 
+include 된 파일의 경로에 각각의 파일을 만들어서 설정합니다.
+<----------------------수정 내용 시작-------------------------->
+[mysql]
+default-character-set = utf8
+
+[mysqldump]
+default-character-set = utf8
+
+[mysqld]
+default_storage_engine=innodb
+lower_case_table_names = 1
+port=3306
+
+max_allowed_packet=128M
+init_connect = "SET collation_connection = utf8_general_ci"
+init_connect = "SET NAMES utf8"
+character-set-server = utf8
+collation-server = utf8_general_ci
+
+skip-host-cache
+skip-name-resolve
+innodb_buffer_pool_size= 8G
+
+[client]
+port=3306
+default-character-set = utf8
+<----------------------수정 내용 끝---------------------------->
+
+3. 설정 확인
+SELECT default_character_set_name, DEFAULT_COLLATION_NAME FROM information_schema.SCHEMATA WHERE schema_name = "mydb"; >
+'mydb' 데이터베이스 설정을 확인합니다

@@ -1,0 +1,30 @@
+1. 우분투에서 크롬 설치
+https://www.google.com/chrome/?platform=linux 에 접속 다운로드
+sudo dpkg -i google-chrome-stable_current_amd64.deb > 크롬 압축푸는 해제
+
+2. 크롬 원격 데스크톱 설치 및 설정
+chrome 에서 확장프로그램으로 압축파일을 받습니다
+sudo apt-get install -f > 종속성 설치
+sudo dpkg -i chrome-remote-desktop_current_amd64.deb > 크롬 원격 데스크톱 압축 해제
+sudo usermod -a -G chrome-remote-desktop 계정아이디 > 그룹추가
+sudo reboot > 재시작
+/opt/google/chrome-remote-desktop/chrome-remote-desktop --stop > 크롬 원격 데스크톱 정지
+sudo cp /opt/google/chrome-remote-desktop/chrome-remote-desktop /opt/google/chrome-remote-desktop/chrome-remote-desktop.orig > 파일 복사
+sudo gedit /opt/google/chrome-remote-desktop/chrome-remote-desktop > 파일 수정
+echo $DISPLAY > 숫자 확인
+<------------------------------------- 변경 내용 시작 ----------------------------------------->
+FIRST_X_DISPLAY_NUMBER = 확인한 숫자
+
+#while os.path.exists(X_LOCK_FILE_TEMPLATE % display):
+#display += 1
+
+def launch_session(self, x_args):
+  self._init_child_env()
+  self._setup_pulseaudio()
+  self._setup_gnubby()
+  #self._launch_x_server(x_args)
+  #self._launch_x_session()
+  display = self.get_unused_display_number()
+  self.child_env["DISPLAY"] = ":%d" % display
+<------------------------------------- 변경 내용 끝 -------------------------------------------->
+/opt/google/chrome-remote-desktop/chrome-remote-desktop --start > 크롬 원격 데스크톱 시작

@@ -1,0 +1,6 @@
+1 linux에서 자동백업
+mariaDB_backup_linux.txt 파일의 내용을 .sh 확장자의 파일로 만듭니다
+chmod 700 mariaDB_backup.sh > 'mariaDB_backup.sh' 의 실행 권한을 부여합니다
+/etc/crontab 을 실행하고 다음의 내용을 추가해줍니다
+0 0 * * * root /smartfinder/mariaDB_backup/mariaDB_backup.sh >
+/smartfinder/mariaDB_backup/mariaDB_backup.sh 내용을 실행합니다

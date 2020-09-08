@@ -1,0 +1,24 @@
+1. 변경 방법
+C:\Program Files\MariaDB 10.4\data\my.ini
+위의 경로의 파일의 내용을 수정해줍니다.
+<----------------------수정 내용 시작-------------------------->
+[client]
+port=3306
+plugin-dir=C\Program Files\MariaDB 10.4\lib\plugin
+default-character-set = utf8
+
+[mysql]
+default-character-set = utf8
+
+[mysqldump]
+default-character-set = utf8
+
+[mysqld]
+datadir=C\Program Files\MariaDB 10.4\data
+port=3306
+innodb_buffer_pool_size=511M
+init_connect = "SET collation_connection = utf8_general_ci"
+init_connect = "SET NAMES utf8"
+character-set-server = utf8
+collation-server = utf8_general_ci
+<----------------------수정 내용 끝---------------------------->

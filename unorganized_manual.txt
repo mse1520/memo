@@ -1,0 +1,321 @@
+arduino IED 및 D1mini(esp8266) 설치
+1. https://www.arduino.cc/에서 다운로드
+2. D1mini설치 https://github.com/esp8266/arduino에서 
+https://arduino.esp8266.com/stable/package_esp8266com_index.json복사
+3. IED실행 파일>환경설정>추가적인 보드 매니저 URLs에 입력
+4. 툴>보드>보드매니저에서 esp8266검색 설치
+
+atom 에디터 설치
+1. https://atom.io/에서 atom설치
+
+파일질라 설치
+1. https://filezilla-project.org/download.php?platform=win64에서 요금 안나오는걸로 설치
+2. 편집>설정>SFTP>키파일추가
+3. 호스트: 주소, 사용자: ubuntu, 포트: 22
+4. 경로는 var/www/html 
+5. putty로 접속하여 파일 옮길수 있게 설정하기
+sudo chmod  o+w /var/www/html 
+
+ubuntu 타임존 설정
+date<<이 명령어로 시간확인
+sudo ln -sf /usr/share/zoneinfo/Asia/Seoul/etc/localtime
+
+putty 설치 및 인스턴스 접속
+1. https://www.puttygen.com/download-putty#PuTTY_for_windows에서 설치
+제일 위에 msi 다운받기
+키생성과정
+2. puttygen 실행 모든파일로 해서 key.pem을 load시킴
+3. save private key로 적당한 이름으로 저장
+키저장
+4.putty>SSH>Auth>Private key file for authentication에 생성한 키 입력
+5.세션에서 주소입력하고 접속
+
+node.js 및 node-red 설치(window)
+1. https://nodejs.org/에서 node.js 설치 왼쪽
+2. cmd창에서 node-red 설치 npm install -g --unsafe-perm node-red
+
+aws인스턴스 및 node.js, node-red 설치(ubuntu)
+1. aws에서 인스턴스를 생성한다
+2. https://nodejs.org/>다운로드>Installing Node.js via package manager>
+Debian and Ubuntu based Linux distributions, Enterprise Linux/Fedora and Snap packages>
+Official Node.js binary distributions>Installation instructions에서 버전에 맞춰 node.js 설치
+단, node-red 페이지에서 비교하면서 설치하기
+(https://nodered.org/docs/getting-started/aws)
+3. 
+curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+sudo apt-get install -y nodejs build-essential
+//여기까진 node.js설치 마직막 명령어가 node-red
+sudo npm install -g node-red
+
+aws ubuntu node.js setting
+1. cd를 이용하여 원하는 경로 이동
+2. 원하는 경로 파일 옮길 수 있도록 설정
+sudo chmod  o+w /var/www/html (ex.예시
+3. 권한 바꿔주고 npm 사용가능하게 하는 명령어
+sudo chown ubuntu .
+npm init
+※추가로 알면 좋은 명령어
+현재 디렉토리 내용 확인(ls -al)
+mkdir 폴더명 (ex. 폴더만드는 방법
+
+express 설치 (node.js의 프레임워크)
+1. 제일 좋은방법은 node.js express를 검색하는것 설치방법이 나온다.
+경로에다가 설치할것
+npm install express --save (설치하는 명령어
+
+node-red 보안 설정
+1. 
+(sudo) npm install -g node-red-admin //aws에서는 sudo를 붙이자
+node-red-admin hash-pw //비밀번호를 해쉬로 만들어서 저장할것임
+2. 
+sudo nano ~/.node-red/settings.js 
+에 들어가서 adminAuth 부분의 주석처리를 해제하고 해시된 비밀번호를 입력한다.
+
+pm2설치(node.js 및 node-red 항상 실행하기위한 것) 및 사용법
+1. pm2검색 및 설치 단, node-red홈페이지와 비교하며 설치
+(https://nodered.org/docs/getting-started/aws)
+2. sudo npm install -g pm2
+pm2 start `which node-red` -- -v
+pm2 save
+pm2 startup
+위의 내용까지 진행하고 cmd창에 이상한 명령어 나오면 복사해서 실행
+3.pm2로 node.js 실행 방법 및 알아두면 좋은 명령어
+pm2 start main.js --watch (ex. watch는 코드의 변화가 있으면 알아서 바꾸는것
+pm2 list (실행중인 리스트 확인
+pm2 delete main.js (삭제
+pm2 stop main.js (중지
+pm2 log (로그보기
+
+aws에서 web서비스 실행하기
+1. apache2 설치하기
+sudo apt-get install apache2
+// sudo apt-get update; 만약 에러가뜨면 실행후 다시 아파치 인스톨 
+
+aws 보안설정(otp)
+1. IAM>MFA 활성화>가상 MFA 디바이스
+
+aws route53 (DNS)
+1. 도메인 구매하기
+Route53>등록된 도메인>도메인 등록에서 도메인 구입
+2. 도메인 등록하기
+호스팅 영역>레코드 세트 생성
+
+aws elb(alb) 설정을 통한 https접속
+1. 보안그룹 생성하기 ssl
+Certificate Manager>인증서 프로비저닝>DNS검증체크
+>레코드 생성하기
+2. 로드밸런서 생성하기
+ec2>로드밸런서>로드 밸런서 생성
+3. route53 도메인 연결
+호스팅 영역>레코드 세트 생성>별칭: 예 체크>별칭 대상 선택
+4.리디렉션
+만든로드밸런서에서 설명란의 리스너를 기존에 있는것을 삭제하고 편집
+5.로드밸런싱>대상 그룹>인스턴스 추가
+
+aws iot core mqtt 생성
+https://docs.aws.amazon.com/ko_kr/iot/latest/developerguide/register-device.html
+위의 메뉴얼을 보는것이 가장 쉬움
+1. 사물 생성>사물 이름 지정>원클릭 인증서 생성(권장)
+>키 다운로드, 루트 CA도 다운로드>서비스 인증을 위한 CA 인증성>
+Amazon Root CA 1>복사해서 pem파일로 저장>사물등록(정책은 나중에 등록 가능)
+2. 보안>정책 생성>이름입력>iot:*, *, 허용 체크>생성
+3. 보안>인증서 선택>작업>정책연결
+
+mongodb copass 설치
+1. https://www.mongodb.com/download-center/compass에서 compass를 smi로 설치
+
+mongoDB 설치
+1. mongoDB download 검색
+2. msi로 다운받기
+
+aws mongoDB 설치
+1. https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+몽고디비 사이트에서 설치방법대로하는것이 가장 정석이다 아래는 참고용
+특히나 1, 2번은 사이트가 더 좋음
+
+Step 1 - Importing the Public Key
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+
+Step 2 - Create source list file MongoDB
+echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+Step 3 - Update the repository
+sudo apt-get update
+
+Step 4 - Install MongoDB
+sudo apt-get install -y mongodb-org
+위 명령이 에러 생기면 다음 명령으로 설치하세요
+설치중 질문사항 모두 "yes"를 선택하세요
+sudo apt-get install --force-yes mongodb-org
+
+Step 5 - MongoDB 동작관련 명령어
+sudo service mongod start
+sudo service mongod restart
+sudo service mongod status
+
+Step 6 – Make Changes in mongod.conf file
+sudo nano /etc/mongod.conf //실행후 접속할 주소를 0.0.0.0 설정
+
+Step 7 - MongoDB 자동실행 안될시
+sudo systemctl enable mongod
+sudo systemctl start mongod
+추가 명령어
+sudo systemctl stop mongod
+sudo systemctl restart mongod
+
+aws mongoDB 비밀번호 설정
+1. 
+mongo
+show dbs
+use admin
+db.createUser(
+      {
+          user: "user",
+          pwd: "password",
+          roles: [ "root" ]
+      }
+  )
+sudo nano /etc/mongod.conf
+security:
+  authorization: enabled //변경
+sudo systemctl restart mongod //똑같은 다른 명령어가 위에 있으므로 참고
+mongo
+use admin
+db.auth("user", "password")
+
+2. 비밀번호 변경등 관련 함수는 홈페이지에서 보자
+https://docs.mongodb.com/manual/reference/method/db.auth/
+
+java 설치
+1. 검색엔진에 java developement kit (jdk) 다운로드 검색
+2. 오라클에서 배포하는 것 선택 > 모든 쿠키 수락
+3. 다운로드 클릭 > Acceipt License Agreement 체크
+4. 자신에게 맞는 운영체제에 맞는 exe 프로그램 다운로드
+5. 추가적으로 32비트라면 x86으로 검색해서 맞는 버전을 받자
+6. 설치할때 경로는 기억해두기
+7. cmd에서 아래의 명령어를 입력해보고 안되면 path를 지정해야함
+java -version
+8. 기억해뒀던 경로에서 bin에 들어가면 java.exe와 javac가 있을것 이곳을 path한다.
+9. 내컴퓨터에서 우클릭 > 속성 > 고급 시스템 설정 > 고급 >
+환경변수 > Path찾아서 편집 > 새로만들기 > 경로추가해서 넣기
+10. cmd창에서 아래의 명령어를 실행하여 설치가 됬는지 확인하기
+java -version
+javac -version
+11. 우분투에서 설치하는법은 기본적으로 검색해서 설치하기
+13. sudo apt update (업데이트 하기)
+12. java -version (설치 되어 있는지 확인)
+13. 설치가 안되어있으면 설치명령어를 제시해줌
+(예시: apt install default-jre)
+14. sudo apt install default-jdk (jdk 인스톨)
+15. 설치가 다 되었으면 javac -version으로 확인하기
+
+sts 설치 및 기본 셋팅
+1. sts download 검색 spring홈페이지에서 다운받자 3과 4버전이 있는데 우선은 3버전을 다운받았다
+2. 다운받은것을 압축을 푼다 다만 압축풀기 오류가 뜨면 반디집을 추천 길이제한을 풀수있는 기능탑제
+3. 위의 내용을 실행은 하지만 검색은 해보자
+4. Window > Preferences > General > Workspace > Text file encoding을 utf-8로 설정한다
+5. Window > Preferences에서 encoding이라고 검색하고 한글이 깨지면 전부 utf-8로 설정한다
+6. 5번부터는 안해도되는 설정같다 사실 4번도 의심되는 설정
+
+tomcat설치 및 sts 설정 방법
+1. tomcat 검색하여 버전을 선택한다 일단은 8버전 zip으로 받았다
+2. 압축을 풀고 경로를 지정해준다 경로는 기억하자
+3. File > New > Spring Legacy Project에서 프로젝트 이름을 작성하고 Spring MVC Project를 선택하고 Next
+4. 패키지의 이름을 등록한다 "com.mycompany.myapp" 이때 myapp이 경로가 되는듯하다
+5. Window > Preferences > Server Runtime Environments > Add > Apache > tomcat버전 선택
+6. Next 누른후 경로를 지정해주자 자바 버전도 선택해줄것
+7. 추가된 tomcat 설정하고 저장하기
+8. 좌측 하단 마우스 우클릭 New > Server에서 tomcat버전 선택하고 Next 
+9. 자신의 프로젝트 추가하고 Finish
+
+sts 실무 사용법
+1. utf-8 설정하기 <%@ page session="false" contentType="text/html; charset=UTF-8" %> 추가하기
+2. server.xml에서 path 설정시 경로가된다
+
+eclipse 설치 및 설정
+1. eclipse 검색하고 다운로드 https://www.eclipse.org/downloads/
+2. 다운로드된 설치파일 실행시키고 eclipse IDE for Java Developers 선택하여 설치
+3. workspace는 프로그램이 생기는 경로지정
+4. Window > Show Veiw > Navigator(안보이면 Oters..클릭해보자)
+5. Create a Java project버튼 클릭으로 프로젝트 만들기
+6. 경로랑 프로젝트 이름을 지정해주자
+7. 프로젝트를 생성할때 project layout설정은 java와 javac의 저장 경로를 지정해준다
+8. 만들어진 프로젝트에 New > File을 클릭하여 파일을 만들자 (.java)
+
+mariadb 설치방법
+1. 우선 검색을 하고 mariadb홈페이지로 가서 운영체제에 맞는것을 다운받아줍니다
+2. 경로는 적당히 정해주고 root계정 비밀번호를 설정해준다
+3. use UTF8 as default server's charcter set은 체크를 하자 (UTF8을 기본으로 설정한다는 내용)
+4. root계정을 다른곳에서도 접속하고싶으면 Enable access from remote machines for 'root' user를 체크하자
+5. 설명에 없으면 그냥 default로 설치하면 된다
+
+mysql 설치방법
+1. window에서 다운로드 MySQL Community Edition 검색 및 설치하기
+2. mysql홈페이지에서 Products > MySQL Community Edition > Download MySQL Community Edition 클릭
+3. MySQL Community Server > General Availability (GA) Releases에서 다운받기
+4. 정확하지 않으니 검색부터하고 다운받기
+5. ubuntu에서 다운로드 일단 검색해보기
+6. 설치하는 명령어
+sudo apt-get update
+sudo apt-get install mysql-server
+7. 위에까지 실행하면 중간에 비밀번호 설정화면이 나온다 비밀번호를 설정해주자
+8. 보안관련 명령어 해주는게 좋다
+mysql_secure_installation
+9. mysql에 접속해서 확인해보기 명령어는 정리해둔것 참조
+
+mysql 설정할 때 필요한 명령어
+1. 접속하는방법
+mysql -u root -p (root는 사용자 이름)
+2. 비밀번호입력
+3. 스키마 만들기
+CREATE DATABASE 스키마이름;
+4. 스키마 삭제
+DROP DATABASE 스키마이름;
+5. 스키마, 테이블, 테이블 구조 보기
+SHOW DATABASES;
+SHOW TALNLES;
+DESC 테이블이름;
+6. 스키마 사용명령어
+USE 스키마이름;
+7. 테이블 제작 (데이터타입은 검색해보자)
+CREATE TABLE 테이블이름(
+	id INT(11) NOT NULL AUTO_INCREAMENT, (알아서 증가시킨다)
+	description VARCHAR(100) NOT NULL,
+	created  DATETIME NOT NULL,
+	컬럼이름 데이터타입(크기) 공백허용요소,
+	PRIMARY KEY(id) (id가 식별자임을 알려주는 것)
+);
+8. 테이블 생성할때 오류가 나올수 있음 아마 패스워드를 바꾸지 않아서 그런것일듯
+오류메세지를 검색하면 답이 대체로 나온다
+9. 비밀번호를 변경하는법
+SET PASSWORD =  PASSWORD('패스워드');
+
+mysql 실무 명령어
+1. 데이터 삽입
+INSERT INTO 테이블이름 (컬럼1, 컬럼2, 컬럼3)
+VALUES('컬럼1의 값','컬럼2의 값',NOW());
+2. 데이터 보기
+SELECT * FROM 테이블이름;
+SELECT 컬럼1,컬럼2 FROM 테이블이름;
+SELECT * FROM 테이블이름 WHERE 컬럼1='기준데이터'; (데이터 조건에 따른 테이블 가져오기)
+SELECT * FROM 테이블이름 WHERE 컬럼1='기준데이터' ORDER BY DESC; (내림차순? 오름차순?)
+SELECT * FROM 테이블이름 WHERE 컬럼1='기준데이터' ORDER BY DESC LIMIT 2; (2개만보는 제한걸기)
+3. 데이터 업데이트
+UPDATE 테이블이름 SET 컬럼1='데이터내용' WHERE 컬럼2=2; (컬럼2는 식별자)
+4. 데이터 삭제
+DELETE FROM 테이블이름 WHERE 컬럼1=5; (컬럼1는 식별자)
+5. LEFT JOIN 왼쪽이 포함되면서 추가되는것
+SELECT * FROM 테이블이름1 LEFT JOIN 테이블이름2 ON 테이블이름1.식별자=테이블이름2.식별자;
+(식별자는 서로 매칭되는것끼리)
+SELECT * FROM 테이블이름1 LEFT JOIN 테이블이름2 ON 테이블이름1.식별자=테이블이름2.식별자 LEFT JOIN 테이블이름2 ON 테이블이름2.식별자=테이블이름3.식별자;
+(3개 연속 조인)
+SELECT 테이블이름1.컬럼1, 컬럼2 FROM 테이블이름1 LEFT JOIN 테이블이름2 ON 테이블이름1.식별자=테이블이름2.식별자;
+(필요한 컬럼만 가져올수있다 다만 중복되는 컬럼의 이름은 테이블을 명시해주자)
+SELECT 컬럼1 AS 컬럼이름 FROM 테이블이름1 LEFT JOIN 테이블이름2 ON 테이블이름1.식별자=테이블이름2.식별자;
+(AS는 컬럼1의 이름을 내가 다시 명시해줄 수 있다)
+6. INNER JOIN 겹치는것만 가져오는것
+SELECT * FROM 테이블이름1 INNER JOIN 테이블이름2 ON 테이블이름1.식별자=테이블이름2.식별자;
+
+
+
+
