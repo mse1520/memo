@@ -16,10 +16,6 @@ atom 에디터 설치
 5. putty로 접속하여 파일 옮길수 있게 설정하기
 sudo chmod  o+w /var/www/html 
 
-ubuntu 타임존 설정
-date<<이 명령어로 시간확인
-sudo ln -sf /usr/share/zoneinfo/Asia/Seoul/etc/localtime
-
 putty 설치 및 인스턴스 접속
 1. https://www.puttygen.com/download-putty#PuTTY_for_windows에서 설치
 제일 위에 msi 다운받기

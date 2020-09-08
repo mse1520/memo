@@ -1,6 +1,11 @@
-11. linux 명령어
+1. linux 명령어
 pwd > 현재 경로 명령어
 ls -al > 하위 폴더 검색 명령어 -al은 상세내용을 포함한다
 cat > 파일의 내용을 보여줍니다
 rm 파일명 > '파일명' 을 지우는 명령어
 touch 파일명 > '파일명' 을 생성하는 명령어
+chmod 내용 파일 > '파일' 의 권한을 '내용' 으로 바꾸는 명령어
+
+2. ubuntu 타임존 설정
+date > 시간확인
+sudo ln -sf /usr/share/zoneinfo/Asia/Seoul/etc/localtime > 서울 시간으로 바꾸는 명령어
