@@ -1,0 +1,10 @@
+00 00	TransactionID > 
+최초 0x0000값 부터 통신시작 시 1씩 증가시키며 슬래이브(Server)는 그 값을 그대로 복사해서 사용합니다. 
+쿼리및 응답에 대해 한쌍으로 작업이 이루어 졌는지를 확인하는 부분입니다.
+그냥 고정값으로 사용합시다
+00 00 	protocolID > 고정값
+00 06	length > 헤더를 제외한 길이
+01	unitID > 같은 선로의 장비를 구분하기 위한것
+04	function code > read input register: 04, read discrete inputs: 02
+00 00	start address > 시작주소
+00 02	data count > 점수
