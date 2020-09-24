@@ -1,6 +1,6 @@
 1. chrome 업그레이드 막기
 taskschd.msc > 실행창에서 검색하여 실행합니다
-GoogleUpdateTaskMachineCore, GoogleUpdateTaskMachineUA > 우클릭 사용 안함
+GoogleUpdateTaskMachineCore, GoogleUpdateTaskMachineUA > 우클릭 > 사용 안함
 C:\Program Files (x86)\Google\Update\GoogleUpdate.exe > 'GoogleUpdate.exe' 의 이름을 바꾼다
 
 2. etc
