@@ -4,3 +4,7 @@ sudo nano /etcprofile.d/auto.sh >
 lxterminal --command="chromium-browser /home/pi/Desktop/kiosk/index.html" >
 만든 실행파일에 아래의 내용을 작성합니다 
 'lxterminal --command=' 는 command 명령을 살행하겠다는 내용입니다
+
+2. 절전모드 해제
+/etc/lightdm/lightdm.conf 파일에서 [Seat:*] 밑에 내용을 아래와 같이 수정
+#xserver-command=X > #xserver-command=X -s 0 -dpms
