@@ -1,11 +1,11 @@
 1. 우분투에서 크롬 설치
 https://www.google.com/chrome/?platform=linux 에 접속 다운로드
-sudo dpkg -i google-chrome-stable_current_amd64.deb > 크롬 압축푸는 해제
+sudo dpkg -i google-chrome-stable_current_amd64.deb > 크롬 압축 해제 및 설치
 
 2. 크롬 원격 데스크톱 설치 및 설정
 chrome 에서 확장프로그램으로 압축파일을 받습니다
 sudo apt-get install -f > 종속성 설치
-sudo dpkg -i chrome-remote-desktop_current_amd64.deb > 크롬 원격 데스크톱 압축 해제
+sudo dpkg -i chrome-remote-desktop_current_amd64.deb > 크롬 원격 데스크톱 압축 해제 및 설치
 sudo usermod -a -G chrome-remote-desktop 계정아이디 > 그룹추가
 sudo reboot > 재시작
 /opt/google/chrome-remote-desktop/chrome-remote-desktop --stop > 크롬 원격 데스크톱 정지
@@ -28,3 +28,7 @@ def launch_session(self, x_args):
   self.child_env["DISPLAY"] = ":%d" % display
 <------------------------------------- 변경 내용 끝 -------------------------------------------->
 /opt/google/chrome-remote-desktop/chrome-remote-desktop --start > 크롬 원격 데스크톱 시작
+
+3. 위의 과정을 수행하고 안될 시
+mkdir ~/.config/chrome-remote-desktop > 경로에 'chrome-remote-desktop' 폴더를 생성한다
+chrome-remote-desktop_current_amd64.deb 설치부터 설정을 다시한다
