@@ -14,3 +14,8 @@ chmod 내용 파일 > '파일' 의 권한을 '내용' 으로 바꾸는 명령어
 2. ubuntu 타임존 설정
 date > 시간 확인
 sudo ln -sf /usr/share/zoneinfo/Asia/Seoul/etc/localtime > 서울 시간으로 바꾸는 명령어
+
+3. ssh 설정
+sudo apt-get install openssh-server > 'openssh-server' 설치 명령어
+sudo nano /etc/ssh/sshd_config > ssh 설정 파일 수정 명령어
+netstat -atn > 2200 ssh 실행 확인 명령어
