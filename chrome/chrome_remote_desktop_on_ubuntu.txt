@@ -32,3 +32,10 @@ def launch_session(self, x_args):
 3. 위의 과정을 수행하고 안될 시
 mkdir ~/.config/chrome-remote-desktop > 경로에 'chrome-remote-desktop' 폴더를 생성한다
 chrome-remote-desktop_current_amd64.deb 설치부터 설정을 다시한다
+
+4. 해상도 설정
+xrandr > 현재 디스플레이 상태를 확인하는 명령어 연결된 화면의 이름을 기억해줍니다
+xrandr --newmode "1920x1080"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+xrandr --addmode Virtual1 1920x1080 > 'Virtual1' 이란 이름의 디스플레이에 해상도를 등록합니다
+xrandr --output Virtual1 --mode 1920x1080 > 'Virtual1' 의 해상도로 바꿉니다
+xrandr -s 1920x1080 > '1920x1080' 해상도로 바꿉니다
