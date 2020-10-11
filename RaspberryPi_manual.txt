@@ -1,10 +1,18 @@
-1. html 파일 부팅시 자동 실행
+1. 초기 및 한글 설정
+sudo raspi-config > 설정 시작
+Advanced Options >> Expand Filesystem >파티션을 다시 잡아줍니다
+sudo apt-get update > 패키지 관리자 업데이트
+sudo apt-get install ibus ibus-hangul > 한글 입력기 설치
+sudo apt-get install fonts-unfonts-core > 폰트 설치
+sudo apt-get upgrade > 한글 입력 설치후에 해주자
+
+2. html 파일 부팅시 자동 실행
 sudo nano /etcprofile.d/auto.sh > 
 'etcprofile.d' 폴더에서 실행시킬 'auto.sh' 파일을 만들고 'nano' 에디터로 수정합니다
 lxterminal --command="chromium-browser /home/pi/Desktop/kiosk/index.html" >
 만든 실행파일에 아래의 내용을 작성합니다 
 'lxterminal --command=' 는 command 명령을 살행하겠다는 내용입니다
 
-2. 절전모드 해제
+3. 절전모드 해제
 /etc/lightdm/lightdm.conf 파일에서 [Seat:*] 밑에 내용을 아래와 같이 수정
-#xserver-command=X > #xserver-command=X -s 0 -dpms
+#xserver-command=X >> #xserver-command=X -s 0 -dpms
