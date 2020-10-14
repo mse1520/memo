@@ -7,8 +7,8 @@ sudo apt-get install fonts-unfonts-core > 폰트 설치
 sudo apt-get upgrade > 한글 입력 설치후에 해주자
 
 2. html 파일 부팅시 자동 실행
-sudo nano /etcprofile.d/auto.sh > 
-'etcprofile.d' 폴더에서 실행시킬 'auto.sh' 파일을 만들고 'nano' 에디터로 수정합니다
+sudo nano /etc/profile.d/auto.sh > 
+'profile.d' 폴더에서 실행시킬 'auto.sh' 파일을 만들고 'nano' 에디터로 수정합니다
 lxterminal --command="chromium-browser /home/pi/Desktop/kiosk/index.html" >
 만든 실행파일에 아래의 내용을 작성합니다 
 'lxterminal --command=' 는 command 명령을 살행하겠다는 내용입니다
