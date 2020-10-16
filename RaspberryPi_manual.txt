@@ -20,6 +20,12 @@ chmod 755 start.sh > 실행권한을 준다
 lxterminal -e chromium-browser 경로/start.sh > 
 경로의 'start.sh' 파일을 'chromium-browser' 명령어로 터미널에서 실행한다
 
-4. 절전모드 해제
+4. 모니터 인식
+sudo nano /boot/config.txt > 'config.txt' 파일을 수정한다
+'config.txt' 의 내용을 다음과 같이 수정한다
+hdmi_force_hotplug=1
+hdmi_drive=2
+
+5. 절전모드 해제
 /etc/lightdm/lightdm.conf 파일에서 [Seat:*] 밑에 내용을 아래와 같이 수정
 #xserver-command=X >> #xserver-command=X -s 0 -dpms
