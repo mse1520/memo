@@ -6,13 +6,20 @@ sudo apt-get install ibus ibus-hangul > 한글 입력기 설치
 sudo apt-get install fonts-unfonts-core > 폰트 설치
 sudo apt-get upgrade > 한글 입력 설치후에 해주자
 
-2. html 파일 부팅시 자동 실행
+2. html 파일 부팅시 자동 실행(첫번째 방법)
 sudo nano /etc/profile.d/auto.sh > 
 'profile.d' 폴더에서 실행시킬 'auto.sh' 파일을 만들고 'nano' 에디터로 수정합니다
 lxterminal --command="chromium-browser /home/pi/Desktop/kiosk/index.html" >
 만든 실행파일에 아래의 내용을 작성합니다 
 'lxterminal --command=' 는 command 명령을 살행하겠다는 내용입니다
 
-3. 절전모드 해제
+3. html 파일 부팅시 자동 실행(두번째 방법)
+sudo nano start.sh > 실행파일을 만든다
+chmod 755 start.sh > 실행권한을 준다
+/etc/xdg/lxsession/LXDE-pi/autostart 에 다음을 추가로 작성합니다
+lxterminal -e chromium-browser 경로/start.sh > 
+경로의 'start.sh' 파일을 'chromium-browser' 명령어로 터미널에서 실행한다
+
+4. 절전모드 해제
 /etc/lightdm/lightdm.conf 파일에서 [Seat:*] 밑에 내용을 아래와 같이 수정
 #xserver-command=X >> #xserver-command=X -s 0 -dpms
