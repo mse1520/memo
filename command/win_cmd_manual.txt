@@ -1,0 +1,4 @@
+1. window 명령어
+rmdir /s > 폴더를 포함한 폴터 하위의 모든 파일을 삭제한다
+move synergy_2020-07-31.sql "C:\Program Files\MariaDB 10.4\bin" >
+'synergy_2020-07-31.sql' 파일을 'C:\Program Files\MariaDB 10.4\bin' 이동경로에 옮긴다

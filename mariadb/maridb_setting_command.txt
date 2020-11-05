@@ -1,22 +1,25 @@
 1. 기본 명령어
-mysql - u root -p
-show databases
-create database 데이터베이스이름
+mysql - u root -p > 
+CLI 접속 명령어 
+환경 변수 설정이 안 되어있는 경우 설치되어 있는 bin 경로로 이동하여 명령을 실행한다
+show databases > 데이터베이스 목록을 보여준다
+create database apple > 'apple'이란 데이터베이스를 생성한다
+use mysql > 
+'mysql'이란 데이터베이스를 사용한다 
+'mysql'은 설치 시 기본 정보가 담기는 데이터베이스이다
+select host, user from user > 
+디비 사용자를 검색합니다 
+'mysql'데이터베이스의 테이블입니다
 
-2. 복구 명령어
-mysql -u root -p synergy_cloud < synergy_2020-07-31.sql
-
-3. 계정생성 및 권한주기
+2. 계정생성 및 권한주기
 CREATE USER '아이디'@'%' IDENTIFIED BY '비밀번호';
 GRANT ALL PRIVILEGES ON 데이터베이스.* TO '아이디'@'%';
 show grants for '아이디'@'localhost(또는%)';
 
-4. 유저정보 확인하기
-use mysql;
-select * from user;
+3. 복구 명령어
+mysql -u root -p synergy_cloud < synergy_2020-07-31.sql
 
-5. cmd 파일 이동 명령어
-move 이동파일 이동경로
+4. cmd 파일 이동 명령어
 move synergy_2020-07-31.sql "C:\Program Files\MariaDB 10.4\bin" >
 'synergy_2020-07-31.sql' 파일을 'C:\Program Files\MariaDB 10.4\bin' 이동경로에 옮긴다
 
