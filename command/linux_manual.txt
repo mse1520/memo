@@ -32,4 +32,7 @@ sudo ln -sf /usr/share/zoneinfo/Asia/Seoul/etc/localtime > 서울 시간으로 �
 4. ssh 설정
 sudo apt-get install openssh-server > 'openssh-server' 설치 명령어
 sudo nano /etc/ssh/sshd_config > ssh 설정 파일 수정 명령어
+PermitRootLogin no > 
+'sshd_config' 파일에서 'PermitRootLogin' 내용을 'no' 로 변경하면 
+root로 ssh 접근이 불가능하다
 netstat -atn > 2200 ssh 실행 확인 명령어
