@@ -1,13 +1,18 @@
 1. jdk 설치
 mkdir /usr/lib/jvm > 경로 만들기 경로는 바뀔 수 있다
 tar -zxvf jdk-8u191-linux-x64.tar.gz > 'jdk-8u191-linux-x64.tar.gz' 파일 압축 해제
+만든 경로에 압축을 해제하자
 
-2. path 설정
+2. path(환경 변수) 설정
 etc/ 경로에 environment 파일의 내용 수정 및 추가
 etc/ 경로에 profile 파일의 내용 수정 및 추가
-profile 맨아래줄에 'source /etc/environment' 추가
+profile 맨 아래줄에 'source /etc/environment' 추가
 <----------------------------------------------- environment 수정 내용 시작 ------------------------------------------------>
+>> original
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+===========================================================================================================================
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/jdk1.8.0_261/bin"
+>> changed
 
 JAVA_HOME=/usr/lib/jvm/jdk1.8.0_261
 CLASSPATH=JAVA_HOME=/usr/lib/jvm/jdk1.8.0_261/lib
