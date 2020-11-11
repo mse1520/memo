@@ -1,0 +1,74 @@
+1. ubuntu 설치 방법
+http://tomcat.apache.org/
+위의 주소로 이동 > Download > 원하는 버전 선택 > 
+Core 에서 tar.gz 우클릭 주소를 복사하고 다음의 명령어를 실행한다
+sudo wget 링크 > 
+웹상에 파일을 다운로드할 때 쓰는 명령어입니다 
+위에서 복사한 링크를 '링크' 자리에 붙여 넣습니다
+tar -zxvf 압축파일 > '압축파일'을 해제하는 명령어
+
+2. tomcat 재시작 방법
+압축푼 경로에서 bin/shutdown.sh 실행
+압축푼 경로에서 bin/startup.sh 실행
+
+3. 참고 링크
+http://june0313.github.io/2018/05/22/install-tomcat-on-ubuntu/
+
+4. 번외(설정 파일 셋팅)    
+    (1) conf 폴더의 'tomcat-users.xml'을 아래의 내용을 추가합니다
+    <----------------------------------------------- tomcat-users.xml 수정 내용 시작 ------------------------------------------------>
+    <role rolename="tomcat"/>
+    <role rolename="manager-gui"/>
+    <role rolename="manager-script"/>
+    <role rolename="manager-jmx"/>
+    <role rolename="manager-status"/>
+    <role rolename="admin-gui"/>
+    <role rolename="admin-script"/>
+    <user username="admin" password="admin" roles="tomcat,manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"/>
+    <----------------------------------------------- tomcat-users.xml 수정 내용 끝 -------------------------------------------------->
+    
+    (2) conf 폴더의 'server.xml'에
+    '<Context docBase="smartfinder" path="/" reloadable="false"></Context>'의 내용을 추가합니다
+    'server.xml'에서 포트를 수정 할 수 있습니다
+    <-------------------------------------------------- server.xml 수정 내용 시작 --------------------------------------------------->
+        <Host name="localhost"  appBase="webapps"
+                unpackWARs="true" autoDeploy="true">
+
+    >>>>original
+    ==================================================================================================================================
+            <Context docBase="smartfinder" path="/" reloadable="false"></Context>
+    >>>>changed
+
+            <!-- SingleSignOn valve, share authentication between web applications
+                Documentation at: /docs/config/valve.html -->
+            <!--
+            <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
+            -->
+
+            <!-- Access log processes all example.
+                Documentation at: /docs/config/valve.html
+                Note: The pattern used is equivalent to using pattern="common" -->
+            <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+                prefix="localhost_access_log" suffix=".txt"
+                pattern="%h %l %u %t &quot;%r&quot; %s %b %D" />
+
+        </Host>
+    <-------------------------------------------------- server.xml 수정 내용 끝 ----------------------------------------------------->
+
+    (3) 'webapps/manager/META-INF/' 경로의 'context.xml'의 내용을 수정합니다
+    Valve 쪽을 주석처리 합니다
+    <-------------------------------------------------- context.xml 수정 내용 시작 --------------------------------------------------->
+    <Context antiResourceLocking="false" privileged="true" >
+        <CookieProcessor className="org.apache.tomcat.util.http.Rfc6265CookieProcessor"
+                    sameSiteCookies="strict" />
+    >>>>original
+        <Valve className="org.apache.catalina.valves.RemoteAddrValve" 
+            allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+    =================================================================================================================================
+        <!-- <Valve className="org.apache.catalina.valves.RemoteAddrValve" 
+            allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> -->
+    >>>>changed
+
+        <Manager sessionAttributeValueClassNameFilter="java\.lang\.(?:Boolean|Integer|Long|Number|String)|org\.apache\.catalina\.filters\.CsrfPreventionFilter\$LruCache(?:\$1)?|java\.util\.(?:Linked)?HashMap"/> 
+    </Context>
+    <-------------------------------------------------- context.xml 수정 내용 끝 ----------------------------------------------------->

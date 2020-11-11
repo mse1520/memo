@@ -1,0 +1,21 @@
+1 mariadb ubuntu 에서 설치하기
+https://mariadb.org/
+위의 주소로 이동 > Download > MariaDB Repositories > Choose a distribution 에서 해당 os 선택 >
+Choose a MariaDB Server version 에서 버전 선택 > Mirror 에서 가장 가까운 장소를 선택 >
+위의 과정을 수행하면 아래에 설치하는 방법과 순서가 나옵니다
+정 모르겠을 때는 내용을 잘 읽어봅시다
+다음의 명령줄을 수행합니다
+sudo apt-get install software-properties-common gnupg-curl apt-transport-https
+sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
+sudo add-apt-repository 'deb [arch=amd64,arm64,i386,ppc64el] https://ftp.harukasan.org/mariadb/repo/10.4/ubuntu xenial main'
+sudo apt update
+sudo apt install mariadb-server
+
+/etc/apt/sources.list 파일에 다음의 내용을 추가해줍니다
+# MariaDB 10.4 repository list - created  UTC
+# https://mariadb.org/download/
+deb [arch=amd64,arm64,i386,ppc64el] https://ftp.harukasan.org/mariadb/repo/10.4/ubuntu xenial main
+deb-src https://ftp.harukasan.org/mariadb/repo/10.4/ubuntu xenial main
+
+1. 참고
+https://niceit.tistory.com/354
