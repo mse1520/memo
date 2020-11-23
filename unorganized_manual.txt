@@ -1,10 +1,3 @@
-arduino IED 및 D1mini(esp8266) 설치
-1. https://www.arduino.cc/에서 다운로드
-2. D1mini설치 https://github.com/esp8266/arduino에서 
-https://arduino.esp8266.com/stable/package_esp8266com_index.json복사
-3. IED실행 파일>환경설정>추가적인 보드 매니저 URLs에 입력
-4. 툴>보드>보드매니저에서 esp8266검색 설치
-
 atom 에디터 설치
 1. https://atom.io/에서 atom설치
 

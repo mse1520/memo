@@ -1,0 +1,6 @@
+1. esp8266 보드 추가하기
+D1mini를 arduino IED에 추가하는 방법은 https://github.com/esp8266/arduino 에 나와있다
+https://arduino.esp8266.com/stable/package_esp8266com_index.json 
+위의 URL을 복사하고 아래의 내용을 실행한다
+'IED 실행 > 파일 > 환경설정 > 추가적인 보드 매니저 URLs'에 위의 URL을 입력해서 보드를 추가한다
+'툴 > 보드 > 보드 매니저'에서 esp8266를 검색해서 보드를 설치한다
