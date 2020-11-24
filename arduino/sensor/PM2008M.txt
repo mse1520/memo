@@ -6,6 +6,7 @@ PM2008 I2C
 검정 : GND
 흰색 : A4 (SDA)
 녹색 : A5 (SCL)
+노랑 : GND(I2C mode), 5V(Serial mode)
 
 3. 미세먼지 정보
 단위: ug/m^3
