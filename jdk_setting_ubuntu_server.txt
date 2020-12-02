@@ -12,10 +12,10 @@ profile 맨 아래줄에 'source /etc/environment' 추가
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 ===========================================================================================================================
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/jdk1.8.0_261/bin"
->> changed
 
 JAVA_HOME=/usr/lib/jvm/jdk1.8.0_261
 CLASSPATH=JAVA_HOME=/usr/lib/jvm/jdk1.8.0_261/lib
+>> changed
 <----------------------------------------------- environment 수정 내용 끝 --------------------------------------------------->
 <----------------------------------------------- profile  수정 내용 시작 ------------------------------------------------------->
 # /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
