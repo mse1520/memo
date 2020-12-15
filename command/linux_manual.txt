@@ -17,25 +17,29 @@ sudo su > root 계정으로 바꿔주는 명령어
 sudo chown -R apple /tomcat9/ > 
 '/tomcat9/'폴더 하위의 모든 파일을 'apple' 계정의 권한으로 바꿔줍니다
 
-2. 에디터 설정 및 사용법
+2. 네트워크 명령어
+w > 서버에 현재 접속한 정보 보기
+last -f /var/log/btmp | more > 접속 시도 정보 보기
+
+3. 에디터 설정 및 사용법
 sudo apt-get update > 먼저 업데이트 후에 설치하는것이 좋아보인다
 sudo apt-get install nano > 
 일반적으로는 설치되어 있지만 안 되어있을 경우 설치합니다
 
-3. vi 에디터 사용법
+4. vi 에디터 사용법
 'i'나 'a'를 입력하면 내용을 수정할 수 있다
 다시 명령모드로 돌아오려면 'esc'를 입력한다
 명령모드로 돌아간 뒤 ':q!' 을 차례로 입력하면 저장하지 않고 나간다
 명령모드에서 ':qw'를 입력하면 저장하고 나간다
 
-4. 인터넷 연결 확인 명령어
+5. 인터넷 연결 확인 명령어
 ping 8.8.8.8 > 핑을 줘서 연결 상태를 확인합니다
 
-3. ubuntu 타임존 설정
+6. ubuntu 타임존 설정
 date > 시간 확인
 sudo ln -sf /usr/share/zoneinfo/Asia/Seoul/etc/localtime > 서울 시간으로 바꾸는 명령어
 
-4. ssh 설정
+7. ssh 설정
 sudo apt-get install openssh-server > 'openssh-server' 설치 명령어
 sudo nano /etc/ssh/sshd_config > ssh 설정 파일 수정 명령어
 PermitRootLogin no > 

@@ -7,3 +7,12 @@ chmod 700 mariaDB_backup.sh > 'mariaDB_backup.sh' 의 실행 권한을 부여합
 2. window 에서 자동백업
 '작업 스케줄러' 를 통해서 매일 실행하도록 설정합니다
 자세한 내용은 구글에 검색합니다
+
+3. 백업 명령어
+리눅스 기준으로 MariaDB의 기본 경로는 '/usr/bin/' 입니다
+mysqldump --routines -u root -p smartfinder > smartfinder.sql
+> 'root'의 계정으로 'smartfinder' 디비를 'smartfinder.sql' 파일로 백업 합니다
+
+4. 복구 명령어
+mysql -u root -p synergy_cloud < synergy_2020-07-31.sql
+> 'synergy_2020-07-31.sql'파일을 'synergy_cloud'에 복구합니다
