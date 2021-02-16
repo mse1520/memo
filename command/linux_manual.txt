@@ -1,3 +1,8 @@
+0. ssh 접속
+ssh user@localhost -p 2200 > 
+'2200' 포트로 'localhost'에 'user'로 접속
+-p 옵션은 포트를 설정할 수 있다
+
 1. 기본 명령어
 pwd > 현재 경로 명령어
 ls -al > 하위 폴더 검색 명령어 -al은 상세내용을 포함한다
