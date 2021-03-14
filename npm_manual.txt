@@ -1,15 +1,22 @@
-1. 버전 확인하기
-npm outdated > 버전을 확인하는 명령어 입니다
+1. npm 명령어
+npm -v > 'npm' 버전 확인
+npm i -g npm > 'npm'을 최신 버전으로 업데이트합니다
+npm outdated > pakage들의 버전을 확인하는 명령어입니다
+npm update > pakage.json 내의 모든 패키지들을 samver 표기법에 의해 업데이트합니다
+npm rm
+npm remove 'pakage name' > 'pakage name'라는 이름의 패키지를 삭제합니다
+
+2. semver 표기법
 ~0.0.5 > 
-'package.json' 에서 버전앞에 '~' 을 붙이면 
+'package.json'에서 패키지들의 버전에 '~'을 붙이면 
 마지막 자리만 가장 최신 버전을 선택한다는 의미입니다
 ^0.0.5 >
-'package.json' 에서 버전 앞에 '^' 을 붙이면 
+'package.json'에서 패키지들의 버전 앞에 '^'을 붙이면 
 두 번째 자리까지 가장 최신 버전을 선택한다는 의미입니다
 >0.0.5 >
-'0.0.5' 를 포함하지 않은 더 높은 버전 모두 선택 대상입니다
+'0.0.5'를 포함하지 않은 더 높은 버전 모두 선택 대상입니다
 부등호 사용방법과 같습니다
-4.0.0 - 5.0.0 > 버전의 사이값을 의미합니다
+4.0.0 - 5.0.0 > 버전의 사잇값을 의미합니다
 
 2. etc
 https://semver.npmjs.com/
