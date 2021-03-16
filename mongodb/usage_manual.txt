@@ -1,0 +1,22 @@
+1. 몽고디비 명령어
+mongo -u root > 기본 접속 명령어
+show dbs > 데이터 베이스 검색
+show users > 사용자 검색 명령어
+use admin > 데이터 베이스 접속 명령어
+sudo systemctl restart mongod > 몽고디비 재시작 명령어 on Linux
+db.createUser(
+   {
+        user: "user",
+        pwd: "password",
+        roles: [ "root" ]
+    }
+)
+> 루트 권한 계정 생성 명령어 자세한 권한은 아래링크 참조
+https://docs.mongodb.com/manual/reference/built-in-roles/
+db.auth("root", "password") > 'root'계정 인증 명령어 성공시 1 출력
+
+2. 보안 설정
+mongod.cfg or mongod.conf 파일에 아래의 내용 수정
+security:
+  authorization: enabled
+파일 수정후 재시작
