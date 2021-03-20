@@ -61,7 +61,7 @@ git push -u origin master >
 처음 설정할 때 -u를 사용합니다
 master 의 내용을 origin 에 업로드합니다
 기본 원격 저장소 설정 시 'origin' 과 'master' 를 생략할 수 있다
-git push --set-upstream origin master > 'master' 를 'origin' 의 기본 원격 저장소로 설정
+git push --set-upstream origin master > 'master' 를 'origin' 의 기본 원격 저장소로 설정 
 git clone 원격주소 원하는폴더 > 
 '원하는폴더' 생략 시 '원격주소'의 마지막 경로폴더가 생성되며 저장소의 소스를 불러온다
 git remote > 어떤 원격 저장소가 있는지 확인하는 명령어
@@ -88,6 +88,8 @@ git cherry-pick commitID > 현재 브랜치에 'commitID' 버전의 변화만을
 git rebase commitID > 
 현재 브랜치에 base 를 'commitID' 버전으로 변경합니다
 주의할 점은 원격 저장소에 push 하기 전에 로컬에서만 사용해야 합니다
+git push -f
+git push -f origin > 같은 branch를 rebase 했을 시 강제로 push 해줄 수 있다
 
 9. git 협업 관련 명령어 및 사용법
 git format-patch commitID > 'commitID' 를 기준으로 수정된 버전을 파일로 만드는 명령어
