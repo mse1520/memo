@@ -3,8 +3,8 @@ npm -v > 'npm' 버전 확인
 npm i -g npm > 'npm'을 최신 버전으로 업데이트합니다
 npm outdated > pakage들의 버전을 확인하는 명령어입니다
 npm update > pakage.json 내의 모든 패키지들을 samver 표기법에 의해 업데이트합니다
-npm rm
-npm remove 'pakage name' > 'pakage name'라는 이름의 패키지를 삭제합니다
+npm rm [패키지명]
+npm remove [패키지명] > 'pakage name'라는 이름의 패키지를 삭제합니다
 
 2. semver 표기법
 ~0.0.5 > 

@@ -7,7 +7,7 @@ ff              plc번호 (고정)
 01 		        점수
 00		        끝
 
-2. 프로토콜 QnA 호환 3E  프레임
+2. 프로토콜 QnA 호환 3E 프레임
 binary - 쓰기
 05 00		sub head
 00 		    network number > 특별한 설정이 아닐시 고정
