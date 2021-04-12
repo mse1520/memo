@@ -1,13 +1,13 @@
 1. 프로토콜(FX3U-ENET-L) A 호환 1E 프레임
-01              sub header > 비트: 00 워드:01 
-ff              plc번호 (고정)
-0a 00           타이머
-24 00 00 00     시작주소
-20 44           디바이스 D
+01		        sub header > 비트: 00 워드:01 
+ff 		        plc번호 (고정)
+0a 00		    타이머
+24 00 00 00 	시작주소
+20 44 		    디바이스 D
 01 		        점수
 00		        끝
 
-2. 프로토콜 QnA 호환 3E 프레임
+2. 프로토콜 QnA 호환 3E  프레임
 binary - 쓰기
 05 00		sub head
 00 		    network number > 특별한 설정이 아닐시 고정
@@ -18,14 +18,54 @@ ff 03 		demand object module i/o > 특별한 설정이 아닐시 고정
 10 00 		cpu inspector data (감시타이머) > 0000: 무한대기, 0001 ~ ffff: 대기시간 (단위 250ms)
 
 01 14		read command >
-            read & write multiple blocks: 0406, read bit & word: 0401, write bit & word: 1401
+            read multiple blocks: 0406, read bit & word: 0401, write bit & word: 1401
 01 00 		sub command >
             read & write multiple blocks: 00[ ]0, read & write bit: 00[ ]1, read & write word: 00[ ]0
             특별한 설정이 아닐시 [0]
+            메뉴얼 참고
 20 00 00	start addr > 32 번
 9d		    device code > Y 디바이스
 04 00		points (디바이스 점수)
 10 00		write data
+
+binary - 읽기
+50 00 		sub head > 고정
+00		    network number > 특별한 설정이 아닐시 고정
+ff		    plc number > 특별한 설정이 아닐시 고정
+ff 03 		demand object module i/o > 특별한 설정이 아닐시 고정
+00		    demand object module device number (국번) > 특별한 설정이 아닐시 고정
+00 00		length of demand data > 타이머부터 길이
+10 00 		cpu inspector data (감시타이머) > 0000: 무한대기, 0001 ~ ffff: 대기시간 (단위 250ms)
+
+01 04		read command >
+            read multiple blocks: 0406, read bit & word: 0401, write bit & word: 1401
+00 00		sub command > 표를 참고해야 하며 별다른 일이 없는이상 '0000'이 고정입니다
+1c 25 00	start addr > D9500 번 시작주소만 아스키일때 특이하게 16진수 변환을 하지 않음
+a8		    device code > 
+            X* 009C, Y* 9D00, M* 9000, L* 9200, F* 9300, V* 9400, B* A000, S* 9800, D* A800 등...
+            binary 시 선두 디바이스와 뒤집어서 작성합니다
+01 00		points (디바이스 점수) 
+
+binary - 복수 읽기
+50 00 		sub head > 고정
+00		    network number > 특별한 설정이 아닐시 고정
+ff		    plc number > 특별한 설정이 아닐시 고정
+ff 03 		demand object module i/o > 특별한 설정이 아닐시 고정
+00		    demand object module device number (국번) > 특별한 설정이 아닐시 고정
+00 00		length of demand data > 타이머부터 길이
+10 00 		cpu inspector data (감시타이머) > 0000: 무한대기, 0001 ~ ffff: 대기시간 (단위 250ms)
+
+06 04		read command >
+            read multiple blocks: 0406, read bit & word: 0401, write bit & word: 1401
+00 00		sub command > 표를 참고해야 하며 별다른 일이 없는이상 '0000'이 고정입니다
+06 		    > 워드 다비이스 블록수
+00		    > 비트 다비이스 블록수
+1c 25 00	start addr > D9500 번 시작주소만 아스키일때 특이하게 16진수 변환을 하지 않음
+a8		    device code > 
+            X* 009C, Y* 9D00, M* 9000, L* 9200, F* 9300, V* 9400, B* A000, S* 9800, D* A800 등...
+            binary 시 선두 디바이스와 뒤집어서 작성합니다
+01 00		> points (디바이스 점수) 
+... *6
 
 ASCII - 읽기
 50 00 		sub head
@@ -37,28 +77,13 @@ ff		    plc number > 특별한 설정이 아닐시 고정
 00 10		cpu inspector data (감시타이머) > 0000: 무한대기, 0001 ~ ffff: 대기시간 (단위 250ms)
 
 04 01		read command >
-            read & write multiple blocks: 0406, read bit & word: 0401, write bit & word: 1401
+            read multiple blocks: 0406, read bit & word: 0401, write bit & word: 1401
 00 00		sub command >
-            read & write multiple blocks: 0406, read bit & word: 0401, write bit & word: 1401
+            read multiple blocks: 0406, read bit & word: 0401, write bit & word: 1401
             특별한 설정이 아닐시 [0]
 D *		    device code > '*' 은 0x20 or 0x2a 로 대체 가능
 00 95 00	start addr > D9500 번 시작주소만 아스키일때 특이하게 16진수 변환을 하지 않음
 00 01		points (디바이스 점수) 
-
-복수블록 읽기
-커맨드
-서브 커맨드
-워드 블록수 > 블록수는 워드와 비트를 모두 합쳐서 120개를 (포함해서) 넘어서는 안된다
-비트 블록수
-디바이스 코드 - 워드
-시작 주소 - 워드
-점수 - 워드
-디바이스 코드 - 워드
-시작 주소 - 워드
-점수 - 워드
-시작 주소 - 비트
-디바이스 코드 - 비트
-점수 - 비트 > 모든 점수의 합계가 960개를  (포함해서) 넘어서는 안된다
 
 3. etc
 https://www.youtube.com/watch?v=lTGMgEqk1UA
