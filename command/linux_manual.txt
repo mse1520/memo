@@ -8,46 +8,60 @@ pwd > 현재 경로 명령어
 ls -al > 하위 폴더 검색 명령어 -al은 상세내용을 포함한다
 cat > 파일의 내용을 보여줍니다
 rm -rif 파일명 > 
-'파일명' 을 지우는 명령어
--r 해당 폴더를 포함한 하위 폴더 삭제 명령어
--i 인터페이스 여부
--f 무조건 삭제하는 명령어
+    '파일명' 을 지우는 명령어
+    -r 해당 폴더를 포함한 하위 폴더 삭제 명령어
+    -i 인터페이스 여부
+    -f 무조건 삭제하는 명령어
 mkdir '폴더' > '폴더' 디렉토리를 만드는 명령어
 touch 파일명 > '파일명' 을 생성하는 명령어
 chmod 내용 파일 > 
-'파일' 의 권한을 '내용' 으로 바꾸는 명령어
-'내용'은 파일질라로 접속하여 숫자를 확인하고 적용하는 방법이 있다
+    '파일' 의 권한을 '내용' 으로 바꾸는 명령어
+    '내용'은 파일질라로 접속하여 숫자를 확인하고 적용하는 방법이 있다
 mv 파일 폴더 > '파일' 을 '폴더' 경로로 이동시킨다
 sudo su > root 계정으로 바꿔주는 명령어
 sudo chown -R apple /tomcat9/ > 
-'/tomcat9/'폴더 하위의 모든 파일을 'apple' 계정의 권한으로 바꿔줍니다
+    '/tomcat9/'폴더 하위의 모든 파일을 'apple' 계정의 권한으로 바꿔줍니다
+    top > 작업관리자, 프로그램을 끝마칠 때는 q를 눌러서 나간다
 
-2. 네트워크 명령어
+2. pakage manager(apt)
+apt-get update > apt 패키지 매니저에서 받을 수 있는 소프트웨어의 목록을 최신 상태로 업데이트합니다
+apt-cache serch htop > 'htop'이라는 프로그램과 관련되어 있는 패키지를 검색하여 보여준다
+apt-get > 사용할 수 있는 명령어의 설명이 나옵니다
+apt-get install htop > 'htop'이라는 프로그램을 설치합니다
+apt-get upgrade
+apt-get upgrade htop > 
+    'htop'이라는 프로그램을 최신 버전으로 업데이트합니다
+    뒤에 프로그램명을 작성 안 할 시 apt를 통해 받은 모든 프로그램을 최신 버전으로 업데이트합니다
+apt-get remove htop > 'htop'이라는 프로그램을 삭제합니다
+
+3. 알면 좋은 pakage
+htop > 기존의 top보다 보기좋은 작업관리자 프로그램
+
+3. 네트워크 명령어
 w > 서버에 현재 접속한 정보 보기
 last -f /var/log/btmp | more > 접속 시도 정보 보기
 
-3. 에디터 설정 및 사용법
+4. 에디터 설정 및 사용법
 sudo apt-get update > 먼저 업데이트 후에 설치하는것이 좋아보인다
-sudo apt-get install nano > 
-일반적으로는 설치되어 있지만 안 되어있을 경우 설치합니다
+sudo apt-get install nano > 일반적으로는 설치되어 있지만 안 되어있을 경우 설치합니다
 
-4. vi 에디터 사용법
+5. vi 에디터 사용법
 'i'나 'a'를 입력하면 내용을 수정할 수 있다
 다시 명령모드로 돌아오려면 'esc'를 입력한다
 명령모드로 돌아간 뒤 ':q!' 을 차례로 입력하면 저장하지 않고 나간다
 명령모드에서 ':qw'를 입력하면 저장하고 나간다
 
-5. 인터넷 연결 확인 명령어
+6. 인터넷 연결 확인 명령어
 ping 8.8.8.8 > 핑을 줘서 연결 상태를 확인합니다
 
-6. ubuntu 타임존 설정
+7. ubuntu 타임존 설정
 date > 시간 확인
 sudo ln -sf /usr/share/zoneinfo/Asia/Seoul/etc/localtime > 서울 시간으로 바꾸는 명령어
 
-7. ssh 설정
+8. ssh 설정
 sudo apt-get install openssh-server > 'openssh-server' 설치 명령어
 sudo nano /etc/ssh/sshd_config > ssh 설정 파일 수정 명령어
 PermitRootLogin no > 
-'sshd_config' 파일에서 'PermitRootLogin' 내용을 'no' 로 변경하면 
-root로 ssh 접근이 불가능하다
+    'sshd_config' 파일에서 'PermitRootLogin' 내용을 'no' 로 변경하면 
+    root로 ssh 접근이 불가능하다
 netstat -atn > 2200 ssh 실행 확인 명령어
