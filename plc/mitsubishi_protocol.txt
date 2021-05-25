@@ -9,7 +9,7 @@ ff 		        plc번호 (고정)
 
 2. 프로토콜 QnA 호환 3E  프레임
 binary - 일괄 쓰기 (bit)
-05 00		sub head
+50 00		sub head
 00 		    network number > 특별한 설정이 아닐시 고정
 ff 		    plc number > 특별한 설정이 아닐시 고정
 ff 03 		demand object module i/o > 특별한 설정이 아닐시 고정
@@ -30,7 +30,7 @@ f4 01 00	start addr > 500번
 10  		write data > 첫번째 값은 1 나머지 더미
 
 binary - 복수 블록 일괄 쓰기
-05 00		sub head
+50 00		sub head
 00 		    network number > 특별한 설정이 아닐시 고정
 ff 		    plc number > 특별한 설정이 아닐시 고정
 ff 03 		demand object module i/o > 특별한 설정이 아닐시 고정
