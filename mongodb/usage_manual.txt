@@ -20,3 +20,12 @@ mongod.cfg or mongod.conf 파일에 아래의 내용 수정
 security:
   authorization: enabled
 파일 수정후 재시작
+
+3. TTL 설정방법
+db.test.createIndex({ createAt: 1 }, { expireAfterSeconds: 604800 }) >
+    'createAt' 컬럼의 데이터를 기준으로 'test' collection 에 TTL index 추가
+    이때 'createAt'은 type이 date 여야 한다
+    시간은 604800초 후에 삭제
+db.test.getIndexes() > 'test' collection 에 설정된 TTL 목록을 보여준다
+db.test.dropIndex({ createAt: 1 }) > 
+    'createAt' 컬럼을 기준으로 'test' collection 에 설정된 TTL을 삭제한다
