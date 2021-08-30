@@ -1,5 +1,5 @@
 1. 기본 명령어
-mysql - u root -p > 
+mysql -u root -p > 
 CLI 접속 명령어 
 환경 변수 설정이 안 되어있는 경우 설치되어 있는 bin 경로로 이동하여 명령을 실행한다
 show databases > 데이터베이스 목록을 보여준다
